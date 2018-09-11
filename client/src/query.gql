@@ -1,22 +1,8 @@
-fragment MessageFields on Message {
-  id
-  date
-  content
-}
-
-mutation GetMessage($message: String!) {
-  getMessage(message: $message) {
-    id
+mutation CreateMessage($message: String!) {
+  createMessage(message: $message) {
+    _id
     message
   }
-}
-
-mutation CreateMessage($input: MessageInput) {
-  createMessage(input: $input) { ...MessageFields }
-}
-
-mutation UpdateMessage($id: String!, $input: MessageInput) {
-  updateMessage(id: $id, input: $input) { ...MessageFields }
 }
 
 mutation DeleteMessage($id: String!) {
