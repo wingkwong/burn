@@ -5,26 +5,34 @@
         <h2>Burn</h2>
         <div>Share self-destructing message to others</div>
 
-        <div v-if="error" class="error">
-         <el-alert
-		   	v-bind:title="error"
-		    type="error">
-		  </el-alert>
-        </div>
+        <div v-if="!submitted">
+	        <div v-if="error" class="error">
+	         <el-alert
+			   	v-bind:title="error"
+			    type="error">
+			  </el-alert>
+	        </div>
 
-        <el-form ref="form" :model="form" @submit.native.prevent="capture">
-          <el-form-item>
-            <el-input type="textarea" v-model="form.message" placeholder="Message" autosize></el-input>
-          </el-form-item>
-          <el-form-item>
-            <el-button round @click="capture">Submit</el-button>
-          </el-form-item>
-        </el-form>
-
+	        <el-form ref="form" :model="form" @submit.native.prevent="capture">
+	          <el-form-item>
+	            <el-input type="textarea" v-model="form.message" placeholder="Message" autosize></el-input>
+	          </el-form-item>
+	          <el-form-item>
+	            <el-button round @click="capture">Submit</el-button>
+	          </el-form-item>
+	        </el-form>
+		</div>
         <div v-if="submitted">
-          <div>Thank you!</div>
-          <div>Please check your email.</div>
+          <div>
+          	<h2>Your link is ready.</h2>
+          	<el-input
+			  placeholder="Please input"
+			  v-model="form.link"
+			  :disabled="true">
+			</el-input>
+          </div>
         </div> 
+
       </div>
 
     </el-main>
@@ -33,35 +41,39 @@
 
 <script>
 // @ is an alias to /src
-import { getMessage } from '../query.gql'
+import { CreateMessage } from '../query.gql'
 
 export default {
   name: 'home',
-  
+
   data() {
     return {
       submitted: false,
       error: false,
       form: {
         message: '',
-      }
+        link: ''
+      },
+      
     }
   },
 
   methods: {
     async capture() {
       const { message } = this.form
+
       if (!message) {
         this.error = 'Please enter message'
         return
       }
 
       this.$apollo.mutate({
-        mutation: getMessage,
+        mutation: CreateMessage,
         variables: {message}
       }).then(({data}) => {
         this.submitted = true
         this.error = false
+        this.form.link = data.createMessage._id
       }).catch((error) => {
         if (error.graphQLErrors.length >= 1) {
           this.error = error.graphQLErrors[0].message            
