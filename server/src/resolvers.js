@@ -4,7 +4,6 @@ const bcrypt = require('bcrypt')
 const req = require('request')
 const moment = require('moment')
 const mongoose = require('mongoose')
-const ObjectId = mongoose.Types.ObjectId
 
 const { Message } = require('./models')
 
@@ -13,7 +12,13 @@ const resolvers = {
    
   },
   Mutation: {
-  
+  	 async createMessage (_, {message}) {
+      const msg = await Message.create({
+       message
+      })
+      console.log(msg)
+      return msg
+    },
   }
 }
 
