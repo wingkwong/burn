@@ -2,7 +2,7 @@ scalar Date
 scalar JSON
 
 type Query {
-  getMessage(id: String, date: String): Record
+  getMessage(id: String, date: String): Message
 }
 
 type Mutation {
