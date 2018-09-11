@@ -1,0 +1,23 @@
+scalar Date
+scalar JSON
+
+type Query {
+  getMessage(id: String, date: String): Record
+}
+
+type Mutation {
+  createMessage(content: MessageInput): Message
+  deleteMessage(id: String!): Boolean
+}
+
+type Message {
+  id: String
+  content: String
+  date: Date
+}
+
+input MessageInput {
+  task: String
+  content: String
+  date: Date
+}
