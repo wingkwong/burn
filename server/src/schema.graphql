@@ -4,10 +4,10 @@ type Message {
 }
 
 type Query {
-  getMessage(id: ID!): Message
+  getMessage(id: String!): Message
 }
 
 type Mutation {
   createMessage(message: String!): Message
-  deleteMessage(id: ID!): Boolean
+  deleteMessage(id: String!): Boolean
 }
