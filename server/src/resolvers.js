@@ -9,7 +9,12 @@ const { Message } = require('./models')
 
 const resolvers = {
   Query: {
-   
+   async getMessage (_, args, {request}) {
+    console.log(args)
+      const msg = await Message.findById(args.id)
+      console.log(msg)
+      return await Message.findById(msg)
+    },
   },
   Mutation: {
   	 async createMessage (_, {message}) {
@@ -18,7 +23,7 @@ const resolvers = {
       })
       console.log(msg)
       return msg
-    },
+    }
   }
 }
 

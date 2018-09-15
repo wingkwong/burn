@@ -8,3 +8,9 @@ mutation CreateMessage($message: String!) {
 mutation DeleteMessage($id: String!) {
   deleteMessage(id: $id)
 }
+
+query GetMessage($id: String!) {
+	getMessage(id: $id) {
+		message
+	}
+}
