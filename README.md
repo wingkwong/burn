@@ -2,10 +2,10 @@
 A web platform built with Vue for creating and sending self destructing messages to other people
 
 ### Features
--[x] Sending text messages
--[ ] Message Encryption
--[ ] Self Destruction after read
--[ ] Self Destruction after a period of time
+- [x] Sending text messages
+- [ ] Message Encryption
+- [ ] Self Destruction after read
+- [ ] Self Destruction after a period of time
 
 ### Development
 Run mongo
