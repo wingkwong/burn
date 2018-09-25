@@ -4,7 +4,7 @@ A web platform built with Vue for creating and sending self destructing messages
 ### Features
 - [x] Sending text messages
 - [ ] Message Encryption
-- [ ] Self Destruction after read
+- [x] Self Destruction after read
 - [ ] Self Destruction after a period of time
 
 ### Development
