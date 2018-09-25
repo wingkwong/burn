@@ -87,7 +87,20 @@ a.link {
   }
 }
 
+.desc {
+  margin-bottom: 10px;
+}
+
 .container-center {
   max-width: 400px;
   margin: auto;
+}
+
+.el-card {
+  width: 80%;
+  margin: 50px auto;
+
+  .el-card__header span {
+    font-weight: bold;
+  }
 }

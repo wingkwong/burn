@@ -3,7 +3,7 @@
     <el-main>
       <div class="container-center">
         <h2>Burn</h2>
-        <div>Share self-destructing messages to others</div>
+        <div class="desc">Share self-destructing messages to others</div>
 
         <div v-if="!submitted">
 	        <div v-if="error" class="error">
@@ -91,7 +91,7 @@ export default {
 
     },
     onCopy: function (e) {
-      alert('You just copied: ' + e.text)
+      alert('Text copied: ' + e.text)
     },
     onError: function (e) {
       alert('Failed to copy texts')
