@@ -17,12 +17,15 @@ const resolvers = {
     },
   },
   Mutation: {
-  	 async createMessage (_, {message}) {
+  	async createMessage (_, {message}) {
       const msg = await Message.create({
        message
       })
       console.log(msg)
       return msg
+    },
+    async deleteMessage (_, {id}) {
+      return await Message.deleteOne({_id: id})
     }
   }
 }
