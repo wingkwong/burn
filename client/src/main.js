@@ -10,6 +10,7 @@ import { WebSocketLink } from 'apollo-link-ws'
 import { getMainDefinition } from 'apollo-utilities'
 import { enableExperimentalFragmentVariables } from 'graphql-tag'
 import VueApollo from 'vue-apollo'
+import VueClipboard from 'vue-clipboard2'
 
 import App from './App.vue'
 import router from './router'
@@ -58,6 +59,7 @@ const apolloProvider = new VueApollo({
 })
 
 Vue.use(VueApollo)
+Vue.use(VueClipboard)
 
 new Vue({
   router,
@@ -65,3 +67,4 @@ new Vue({
   store,
   render: h => h(App)
 }).$mount('#app')
+

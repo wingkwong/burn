@@ -3,7 +3,7 @@
     <el-main>
       <div class="container-center">
         <h2>Burn</h2>
-        <div>Share self-destructing message to others</div>
+        <div>Share self-destructing messages to others</div>
 
         <div v-if="!submitted">
 	        <div v-if="error" class="error">
@@ -15,7 +15,7 @@
 
 	        <el-form ref="form" :model="form" @submit.native.prevent="capture">
 	          <el-form-item>
-	            <el-input type="textarea" v-model="form.message" placeholder="Message" autosize></el-input>
+	            <el-input type="textarea" :autosize="{ minRows: 5}" v-model="form.message" placeholder="Message"></el-input>
 	          </el-form-item>
 	          <el-form-item>
 	            <el-button round @click="capture">Submit</el-button>
@@ -26,10 +26,16 @@
           <div>
           	<h2>Your link is ready.</h2>
           	<el-input
-			  placeholder="Please input"
-			  v-model="form.link"
-			  :disabled="true">
-			</el-input>
+      			  placeholder="Please input"
+      			  v-model="form.link"
+      			  :disabled="true">
+              <el-button 
+                slot="append" 
+                v-clipboard:copy=form.link
+                v-clipboard:success="onCopy"
+                v-clipboard:error="onError"
+                >Copy</el-button>
+      			</el-input>
           </div>
         </div> 
 
@@ -83,6 +89,12 @@ export default {
         console.log(error)
       })
 
+    },
+    onCopy: function (e) {
+      alert('You just copied: ' + e.text)
+    },
+    onError: function (e) {
+      alert('Failed to copy texts')
     }
    }
 }
