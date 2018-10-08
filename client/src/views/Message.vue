@@ -14,7 +14,7 @@
         <div slot="header" class="clearfix">
           <span>This message has been deleted. <br>Make sure to copy the message before closing the window.</span>
         </div>
-      {{this.content}}
+        <pre v-html="this.content" v-linkified></pre>
       </el-card>
      </div>
       <div v-if="isDeleted">
